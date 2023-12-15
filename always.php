@@ -26,25 +26,33 @@ class Always{
     }
 
     /*
-    * Example
+    * Example TimeZone: Europe/Istanbul
     * Today: 2023-12-16
     * Yesterday: 2023-12-15
     * Result: 1702587600 (2023-12-15 00:00:00)
     */
-    public function getYesterdayStartTime($timezone = "Europe/Istanbul"){
-        $today = new DateTime('now',new DateTimeZone($timezone));
+    public function getYesterdayStartTime($timezone = null){
+        if ($timezone != null) {
+            $today = new DateTime('now',new DateTimeZone($timezone));
+        }else{
+            $today = new DateTime('now');
+        }
         $yesterday = $today->modify('-1 day')->setTime(0,0,0)->getTimestamp();
         return $yesterday;
     }
 
     /*
-    * Example
+    * Example TimeZone: Europe/Istanbul
     * Today: 2023-12-16
     * Yesterday: 2023-12-15
     * Result: 1702673999 (2023-12-15 23:59:59)
     */
-    public function getYesterdayEndTime($timezone = "Europe/Istanbul"){
-        $today = new DateTime('now',new DateTimeZone($timezone));
+    public function getYesterdayEndTime($timezone = null){
+        if ($timezone != null) {
+            $today = new DateTime('now',new DateTimeZone($timezone));
+        }else{
+            $today = new DateTime('now');
+        }
         $yesterday = $today->modify('-1 day')->setTime(23,59,59)->getTimestamp();
         return $yesterday;
     }
